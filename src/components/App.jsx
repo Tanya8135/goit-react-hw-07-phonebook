@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from 'redux/themeSlice';
 import { selectTheme } from 'redux/selectors';
 import { ContactForm } from './ContactForm/ContactForm';
-
+import { ContactList } from './ContactList/ContactList';
 
 import css from './App.module.css';
 
@@ -33,7 +33,7 @@ export function App() {
         <h1>Phonebook</h1>
         <ContactForm />
         <h2>Contacts</h2>
-      
+        <ContactList />
       </main>
     </div>
   );
