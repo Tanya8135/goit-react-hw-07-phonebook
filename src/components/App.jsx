@@ -1,16 +1,40 @@
-export const App = () => {
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from 'redux/themeSlice';
+import { selectTheme } from 'redux/selectors';
+import { ContactForm } from './ContactForm/ContactForm';
+
+
+import css from './App.module.css';
+
+export function App() {
+  const dispatch = useDispatch();
+  const darkTheme = useSelector(selectTheme);
+
+  useEffect(() => {
+    if (darkTheme) {
+      document.body.classList.add('darkTheme');
+      document.body.classList.remove('lightTheme');
+    } else {
+      document.body.classList.remove('darkTheme');
+      document.body.classList.add('lightTheme');
+    }
+  }, [darkTheme]);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className={css.appBox}>
+      <main>
+        <button
+          className={css.btnTheme}
+          onClick={() => dispatch(toggleTheme())}
+        >
+          Theme: {darkTheme ? 'Light' : 'Dark'}
+        </button>
+        <h1>Phonebook</h1>
+        <ContactForm />
+        <h2>Contacts</h2>
+      
+      </main>
     </div>
   );
-};
+}
